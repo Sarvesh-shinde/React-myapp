@@ -1,16 +1,13 @@
-import Image from "./components/Image"
+
+
+import Login from './components/Login';
 
 function App() {
-  
-
   return (
-    <>
-     <div>
-        <Image/>
-
-     </div>
-    </>
-  )
+    <div className="App">
+      <Login />
+    </div>
+  );
 }
 
-export default App
+export default App;

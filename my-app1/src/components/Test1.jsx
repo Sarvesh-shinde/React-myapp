@@ -1,8 +1,15 @@
-function App(){
+import { useState ,useEffect } from "react"
+function Test1() {
+    const [count, updateCounter] = useState(0)
+    useEffect(() => {console.log("Clicked")}, [count])
     return (
-      <div>
-       <h2>This is Test1.jsx, a functional component</h2>
-      </div>
+        <div>
+            <center>
+                
+                <h1>{count}</h1>
+                <button onClick={() => updateCounter(count+1)}>Change</button>
+            </center>
+        </div>
     )
-  }
-  export default App;
+}   
+export default Test1;
