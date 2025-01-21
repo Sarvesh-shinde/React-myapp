@@ -1,15 +1,13 @@
-import Test from './components/test'; // Import the Test component
-import Test1 from './components/Test1'; // Import the Test1 component
-import Test2 from './components/Test2';
+import Image from "./components/Image"
+
 function App() {
   
 
   return (
     <>
      <div>
-       <Test />
-       <Test1 />
-       <Test2 />
+        <Image/>
+
      </div>
     </>
   )
