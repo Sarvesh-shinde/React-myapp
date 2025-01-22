@@ -1,85 +1,44 @@
-import  { useState, useEffect } from 'react';
+import {useState} from 'react'
+function Login(){
+    const[username,setUsername]=useState("");
+    const[password, setPassword]=useState("");
+    const[errorMessage,setErrorMessage]=useState("");
 
-function Login() {
-  // Step 1: Define state variables using useState
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Step 2: Predefined valid users and passwords
-  const validCredentials = {
-    user1: 'password123',
-    user2: 'mypassword456',
-  };
-
-  // Step 3: Use useEffect to handle side effects (display login success)
-  useEffect(() => {
-    if (isLoggedIn) {
-      alert('You have successfully logged in!');
+    const handleUserNameChange=(event)=>{
+        setUsername(event.target.value);
     }
-  }, [isLoggedIn]); // Runs when `isLoggedIn` state changes
-
-  // Step 4: Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handlePasswordChange=(event)=>{
+        setPassword(event.target.value);
+    }
+    const handleSubmit=(event)=>{
+        event.preventDefault();
     
-    // Simple validation: check if username and password are filled
-    if (username === '' || password === '') {
-      setErrorMessage('Both fields are required.');
-      return;
+    if(username===""||password===""){
+        setErrorMessage("please enter username & password")
     }
-    
-    // Check if username exists in validCredentials and password matches
-    if (validCredentials[username] && validCredentials[username] === password) {
-      setIsLoggedIn(true);
-      setErrorMessage('');
-    } else {
-      setErrorMessage('Invalid username or password.');
+    if(username==='sarvesh'||password==='123456'){
+        console.log("Login is success")
     }
-  };
-
-  // Step 5: Handle input changes
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
+    else{
+        setErrorMessage("Invalid username & password")
+    }
+    }
+    return(
         <div>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
-            placeholder="Enter username"
-          />
+            <h1>Welcome  to Login Page</h1>
+            {errorMessage && <p className='error'>{errorMessage}</p>}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="username">UserName</label>
+                    <input type="text" id="username" value={username} onChange={handleUserNameChange}/>
+                    <br/>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" value={password} onChange={handlePasswordChange}/>
+                    <br/>
+                    </div>
+                <button type="submit">Login</button>
+            </form>
         </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Enter password"
-          />
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
-
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-    </div>
-  );
+    )
 }
-
 export default Login;
